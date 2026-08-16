@@ -83,8 +83,7 @@ if uploaded_file is not None:
 
     st.image(
         image,
-        caption="Uploaded Image",
-        use_container_width=True
+        caption="Uploaded Image"
     )
 
     if st.button("🔍 Predict Waste Type"):
