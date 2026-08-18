@@ -154,23 +154,43 @@ if uploaded_file is not None:
         )
 
 else:
+    eco_messages = {
+        "cardboard": "🌱 Recycling cardboard helps reduce paper waste.",
+        "glass": "♻️ Glass can often be recycled and reused.",
+        "metal": "🔩 Recycling metal helps save natural resources.",
+        "paper": "📄 Recycling paper helps reduce the need for new paper.",
+        "plastic": "🌍 Proper plastic recycling helps reduce environmental pollution.",
+        "trash": "🗑️ Dispose of general waste in the appropriate bin."
+    }
+
+    eco_message = eco_messages.get(
+        predicted_class.lower(),
+        "🌱 Proper waste segregation helps protect our environment."
+    )
+
+    st.success(
+        f"🌱 Eco Impact: {eco_message}"
+    )
+
 eco_messages = {
-    "cardboard": "🌱 Recycling cardboard helps reduce paper waste.",
-    "glass": "♻️ Glass can often be recycled and reused.",
-    "metal": "🔩 Recycling metal helps save natural resources.",
-    "paper": "📄 Recycling paper helps reduce the need for new paper.",
-    "plastic": "🌍 Proper plastic recycling helps reduce environmental pollution.",
-    "trash": "🗑️ Dispose of general waste in the appropriate bin."
-}
+        "cardboard": "🌱 Recycling cardboard helps reduce paper waste.",
+        "glass": "♻️ Glass can often be recycled and reused.",
+        "metal": "🔩 Recycling metal helps save natural resources.",
+        "paper": "📄 Recycling paper helps reduce the need for new paper.",
+        "plastic": "🌍 Proper plastic recycling helps reduce environmental pollution.",
+        "trash": "🗑️ Dispose of general waste in the appropriate bin."
+    }
 
-eco_message = eco_messages.get(
-    predicted_class.lower(),
-    "🌱 Proper waste segregation helps protect our environment."
-)
+    eco_message = eco_messages.get(
+        predicted_class.lower(),
+        "🌱 Proper waste segregation helps protect our environment."
+    )
 
-st.success(
-    f"🌱 Eco Impact: {eco_message}"
-)
+    st.success(
+        f"🌱 Eco Impact: {eco_message}"
+    )
+
+else:
     st.info(
         "👆 Upload a waste image to start prediction."
     )
