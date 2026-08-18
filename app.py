@@ -1,4 +1,3 @@
-
 import streamlit as st
 import tensorflow as tf
 import json
@@ -107,9 +106,7 @@ if uploaded_file is not None:
 
         predicted_index = np.argmax(predictions[0])
 
-        predicted_class = class_names[
-            predicted_index
-        ]
+        predicted_class = class_names[predicted_index]
 
         confidence = (
             predictions[0][predicted_index] * 100
@@ -136,12 +133,23 @@ if uploaded_file is not None:
         # =========================
 
         suggestions = {
-            "cardboard": "📦 Send cardboard for recycling.",
-            "glass": "🪟 Put glass in a glass recycling collection.",
-            "metal": "🔩 Send metal items for metal recycling.",
-            "paper": "📄 Put clean paper in paper recycling.",
-            "plastic": "🧴 Put suitable plastic in plastic recycling.",
-            "trash": "🗑️ Dispose of general trash in the appropriate waste bin."
+            "cardboard":
+                "📦 Send cardboard for recycling.",
+
+            "glass":
+                "🪟 Put glass in a glass recycling collection.",
+
+            "metal":
+                "🔩 Send metal items for metal recycling.",
+
+            "paper":
+                "📄 Put clean paper in paper recycling.",
+
+            "plastic":
+                "🧴 Put suitable plastic in plastic recycling.",
+
+            "trash":
+                "🗑️ Dispose of general trash in the appropriate waste bin."
         }
 
         suggestion = suggestions.get(
@@ -153,44 +161,41 @@ if uploaded_file is not None:
             f"💡 Suggestion: {suggestion}"
         )
 
-else:
-    eco_messages = {
-        "cardboard": "🌱 Recycling cardboard helps reduce paper waste.",
-        "glass": "♻️ Glass can often be recycled and reused.",
-        "metal": "🔩 Recycling metal helps save natural resources.",
-        "paper": "📄 Recycling paper helps reduce the need for new paper.",
-        "plastic": "🌍 Proper plastic recycling helps reduce environmental pollution.",
-        "trash": "🗑️ Dispose of general waste in the appropriate bin."
-    }
+        # =========================
+        # ECO IMPACT
+        # =========================
 
-    eco_message = eco_messages.get(
-        predicted_class.lower(),
-        "🌱 Proper waste segregation helps protect our environment."
-    )
+        eco_messages = {
+            "cardboard":
+                "🌱 Recycling cardboard helps reduce paper waste.",
 
-    st.success(
-        f"🌱 Eco Impact: {eco_message}"
-    )
+            "glass":
+                "♻️ Glass can often be recycled and reused.",
 
-eco_messages = {
-        "cardboard": "🌱 Recycling cardboard helps reduce paper waste.",
-        "glass": "♻️ Glass can often be recycled and reused.",
-        "metal": "🔩 Recycling metal helps save natural resources.",
-        "paper": "📄 Recycling paper helps reduce the need for new paper.",
-        "plastic": "🌍 Proper plastic recycling helps reduce environmental pollution.",
-        "trash": "🗑️ Dispose of general waste in the appropriate bin."
-    }
+            "metal":
+                "🔩 Recycling metal helps save natural resources.",
 
-    eco_message = eco_messages.get(
-        predicted_class.lower(),
-        "🌱 Proper waste segregation helps protect our environment."
-    )
+            "paper":
+                "📄 Recycling paper helps reduce the need for new paper.",
 
-    st.success(
-        f"🌱 Eco Impact: {eco_message}"
-    )
+            "plastic":
+                "🌍 Proper plastic recycling helps reduce environmental pollution.",
+
+            "trash":
+                "🗑️ Dispose of general waste in the appropriate waste bin."
+        }
+
+        eco_message = eco_messages.get(
+            predicted_class.lower(),
+            "🌱 Proper waste segregation helps protect our environment."
+        )
+
+        st.success(
+            f"🌱 Eco Impact: {eco_message}"
+        )
 
 else:
+
     st.info(
         "👆 Upload a waste image to start prediction."
     )
